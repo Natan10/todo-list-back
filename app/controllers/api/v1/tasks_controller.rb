@@ -6,11 +6,11 @@ class Api::V1::TasksController < Api::V1::ApiController
   def index
     @tasks = current_user.tasks
 
-    render json: @tasks
+    render json: @tasks.to_json(only: [:name,:description,:status,:priority])
   end
 
   def show
-    render json: @task
+    render json: @task.to_json(only: [:name,:description,:status,:priority])
   end
 
   def create
@@ -22,7 +22,6 @@ class Api::V1::TasksController < Api::V1::ApiController
       render json: @task.errors, status: :unprocessable_entity
     end
   end
-
 
   def update
     if @task.update(task_params)
