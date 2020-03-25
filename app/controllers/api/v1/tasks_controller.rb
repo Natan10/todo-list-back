@@ -13,6 +13,7 @@ class Api::V1::TasksController < Api::V1::ApiController
     render json: @task.to_json(only: [:name,:description,:status,:priority])
   end
 
+
   def create
     @task = Task.new(task_params.merge(user: current_user))
 
@@ -49,7 +50,6 @@ class Api::V1::TasksController < Api::V1::ApiController
     unless current_user == @task.user
       render json: {}, status: :forbidden
     end
-
   end
 
 end
