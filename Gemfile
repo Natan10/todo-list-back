@@ -29,11 +29,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 group :test do
   gem "factory_bot_rails"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
+
 group :development, :test do
   gem "rspec-rails", "~> 3.5"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
