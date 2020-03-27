@@ -1,6 +1,6 @@
 class Api::V1::TasksController < Api::V1::ApiController
   before_action :set_task , only: [:update, :show, :destroy]
-  before_action :require_authorization , only: [:show,:update,:destroy]
+  #before_action :require_authorization , only: [:show,:update,:destroy]
 
 
   def index
@@ -10,7 +10,11 @@ class Api::V1::TasksController < Api::V1::ApiController
   end
 
   def show
-    render json: @task.to_json(only: [:name,:description,:status,:priority])
+    if !@task.nil?
+      render json: @task.to_json(only: [:name,:description,:status,:priority])
+    else
+      render json: {} ,status: :not_found
+    end
   end
 
 
@@ -39,17 +43,22 @@ class Api::V1::TasksController < Api::V1::ApiController
   private
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id:params[:id])
+    if !@task.nil?
+      unless current_user == @task.user
+        render json: {}, status: :forbidden
+      end
+    end
   end
 
   def task_params
     @task = params.require(:tasks).permit(:name,:description,:status,:priority)
   end
 
-  def require_authorization
-    unless current_user == @task.user
-      render json: {}, status: :forbidden
-    end
-  end
+#  def require_authorization
+#    unless current_user == @task.user
+#      render json: {}, status: :forbidden
+#    end
+#  end
 
 end
