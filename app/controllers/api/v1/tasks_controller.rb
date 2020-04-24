@@ -52,7 +52,7 @@ class Api::V1::TasksController < Api::V1::ApiController
   end
 
   def task_params
-    @task = params.require(:tasks).permit(:name,:description,:status,:priority)
+    @task = params.require(:task).permit(:name,:description,:status,:priority)
   end
 
 #  def require_authorization
