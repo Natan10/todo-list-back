@@ -5,7 +5,6 @@ class Api::V1::TasksController < Api::V1::ApiController
 
   def index
     @tasks = current_user.tasks.page(1).per(6).order(:created_at)
-
     render json: @tasks.to_json(only: [:id,:name,:description,:status,:priority])
   end
 

@@ -31,8 +31,10 @@ gem 'kaminari'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'devise'
-gem 'simple_token_authentication', '~> 1.0'
+#gem 'devise'
+#gem 'simple_token_authentication', '~> 1.0'
+
+gem 'devise_token_auth'
 
 group :test do
   gem "factory_bot_rails"
