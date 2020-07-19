@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
   
   
-  namespace 'api' ,defaults:{ format: 'json' } do 
-    namespace 'v1' do
+  
+  namespace 'api' ,defaults:{ format: 'json' },path:'/api' do 
+    namespace 'v1',path:'/' do
+      mount_devise_token_auth_for 'User', at: 'auth'
       resources :tasks
     end
   end

@@ -1,8 +1,14 @@
 module Api::V1
   class ApiController < ApplicationController
  
-    #before_action :require_authentication!
+
+    alias_method :current_user, :current_api_v1_user
+    alias_method :authenticate_user!, :authenticate_api_v1_user!
+
+    before_action :require_authentication!
     before_action  :authenticate_user!
+
+    
      
     private
      
