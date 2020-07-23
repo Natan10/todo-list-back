@@ -21,7 +21,7 @@ User.create!(email: "user3@user3.com",
 
 puts "Criando tasks..."
 
-20.times{
+50.times{
   Task.create!(
     name: Faker::Job.field,
     description: Faker::Lorem.sentence(word_count: 4),
