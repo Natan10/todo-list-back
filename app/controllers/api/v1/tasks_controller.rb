@@ -29,7 +29,7 @@ class Api::V1::TasksController < Api::V1::ApiController
 
   def update
     if @task.update(task_params)
-      byebug
+
       render json: @task
     else
       render json: @task.errors, status: :unprocessable_entity
@@ -52,7 +52,7 @@ class Api::V1::TasksController < Api::V1::ApiController
   end
 
   def task_params
-    byebug
+    
     @task = params.require(:task).permit(:name,:description,:status,:priority)
   end
 
